@@ -6,6 +6,8 @@ import { useAuth } from '../contexts/AuthContext';
 import Navbar from '../components/Navbar';
 import CreateProjectModal from '../components/CreateProjectModal';
 import { deleteProject } from '../utils/firestore';
+import DataImporter from '../dataImporter';
+
 
 function Dashboard() {
   const [projects, setProjects] = useState([]);
@@ -105,6 +107,8 @@ function Dashboard() {
           </div>
         )}
       </div>
+
+      <DataImporter />  
 
       <CreateProjectModal 
         isOpen={isModalOpen}

@@ -1,0 +1,132 @@
+[
+  {
+    "title": "Website Redesign 2.0",
+    "description": "Complete overhaul of the main company website. Focus on mobile-first design, accessibility, and performance improvements.",
+    "tasks": [
+      {
+        "taskId": "web-1",
+        "text": "Finalize design mockups with UX team",
+        "completed": true
+      },
+      {
+        "taskId": "web-2",
+        "text": "Develop React component library",
+        "completed": true
+      },
+      {
+        "taskId": "web-3",
+        "text": "Integrate with new headless CMS",
+        "completed": false
+      },
+      {
+        "taskId": "web-4",
+        "text": "Perform user acceptance testing (UAT)",
+        "completed": false
+      },
+      {
+        "taskId": "web-5",
+        "text": "Schedule deployment for end of month",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "Q4 Social Media Campaign",
+    "description": "Promote the new 'Phoenix' product across all social channels for the holiday season.",
+    "tasks": [
+      {
+        "taskId": "sm-1",
+        "text": "Create content calendar",
+        "completed": true
+      },
+      {
+        "taskId": "sm-2",
+        "text": "Design visual assets (images and videos)",
+        "completed": false
+      },
+      {
+        "taskId": "sm-3",
+        "text": "Write ad copy for all platforms",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "Apartment Renovation",
+    "description": "Renovate the kitchen and bathroom. Budget: $15,000.",
+    "tasks": [
+      {
+        "taskId": "reno-1",
+        "text": "Get quotes from three different contractors",
+        "completed": true
+      },
+      {
+        "taskId": "reno-2",
+        "text": "Order kitchen cabinets and countertops",
+        "completed": true
+      },
+      {
+        "taskId": "reno-3",
+        "text": "Purchase new bathroom tiles and vanity",
+        "completed": false
+      },
+      {
+        "taskId": "reno-4",
+        "text": "Schedule plumber and electrician for next week",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "New Product Launch - 'Phoenix'",
+    "description": "Coordinate all departments for the launch of our next-generation product, codenamed Phoenix.",
+    "tasks": [
+      {
+        "taskId": "phx-1",
+        "text": "Finalize the product pricing model",
+        "completed": true
+      },
+      {
+        "taskId": "phx-2",
+        "text": "Prepare press release and media kit",
+        "completed": true
+      },
+      {
+        "taskId": "phx-3",
+        "text": "Train sales and customer support teams",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "YouTube Channel Video Series",
+    "description": "Create a 5-part series on 'Advanced React Hooks' for the company's developer channel.",
+    "tasks": [
+      {
+        "taskId": "yt-1",
+        "text": "Script Episode 1: useState Deep Dive",
+        "completed": true
+      },
+      {
+        "taskId": "yt-2",
+        "text": "Record Episode 1",
+        "completed": true
+      },
+      {
+        "taskId": "yt-3",
+        "text": "Edit and upload Episode 1",
+        "completed": true
+      },
+      {
+        "taskId": "yt-4",
+        "text": "Script Episode 2: useEffect Best Practices",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "Organize Company Offsite",
+    "description": "Plan the annual company-wide offsite event for Q2. Still in early planning stages.",
+    "tasks": []
+  }
+]

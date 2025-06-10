@@ -3,18 +3,19 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { doc, onSnapshot, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import { deleteProject } from '../utils/firestore';
-import { useAuth } from '../contexts/AuthContext';
 import Navbar from '../components/Navbar';
+import EditProjectModal from '../components/EditProjectModal';
 import { v4 as uuidv4 } from 'uuid';
 
 function ProjectDetail() {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useAuth();
   const [project, setProject] = useState(null);
   const [newTask, setNewTask] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState('createdAt'); // 'createdAt', 'alphabetical', 'completed'
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -95,6 +96,20 @@ function ProjectDetail() {
     }
   };
 
+  const sortTasks = (tasks) => {
+    return [...tasks].sort((a, b) => {
+      switch (sortOrder) {
+        case 'alphabetical':
+          return a.text.localeCompare(b.text);
+        case 'completed':
+          return (a.completed === b.completed) ? 0 : a.completed ? 1 : -1;
+        case 'createdAt':
+        default:
+          return a.createdAt > b.createdAt ? -1 : 1;
+      }
+    });
+  };
+
   if (loading) {
     return (
       <>
@@ -134,11 +149,24 @@ function ProjectDetail() {
     <>
       <Navbar />
       <div className="container mt-4">
+        <button 
+          className="btn btn-outline-primary mb-3"
+          onClick={() => navigate('/dashboard')}
+        >
+          ← Back to Dashboard
+        </button>
+
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h1>{project.title}</h1>
           <div>
             <button 
-              className="btn btn-danger ms-2"
+              className="btn btn-primary me-2"
+              onClick={() => setIsEditModalOpen(true)}
+            >
+              Edit Project
+            </button>
+            <button 
+              className="btn btn-danger"
               onClick={handleDeleteProject}
             >
               Delete Project
@@ -150,7 +178,19 @@ function ProjectDetail() {
 
         <div className="card mb-4">
           <div className="card-body">
-            <h5 className="card-title">Tasks</h5>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h5 className="card-title mb-0">Tasks</h5>
+              <select 
+                className="form-select w-auto"
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <option value="createdAt">Sort by Date</option>
+                <option value="alphabetical">Sort Alphabetically</option>
+                <option value="completed">Sort by Completion</option>
+              </select>
+            </div>
+
             <form onSubmit={handleAddTask} className="mb-3">
               <div className="input-group">
                 <input
@@ -165,7 +205,7 @@ function ProjectDetail() {
             </form>
 
             <ul className="list-group">
-              {project.tasks.map(task => (
+              {sortTasks(project.tasks).map(task => (
                 <li 
                   key={task.taskId}
                   className="list-group-item d-flex justify-content-between align-items-center"
@@ -198,6 +238,12 @@ function ProjectDetail() {
           </div>
         </div>
       </div>
+
+      <EditProjectModal 
+        project={project}
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+      />
     </>
   );
 }
